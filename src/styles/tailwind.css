@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode Colors */
+    --color-background: #FAFBFC; /* gray-50 with blue undertones */
+    --color-foreground: #1A202C; /* gray-900 deep charcoal */
+    --color-card: #FFFFFF; /* white */
+    --color-card-foreground: #1A202C; /* gray-900 */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #1A202C; /* gray-900 */
+    --color-muted: #F7FAFC; /* gray-50 */
+    --color-muted-foreground: #4A5568; /* gray-600 */
+    --color-border: rgba(0, 0, 0, 0.1); /* black-10 */
+    --color-input: #FFFFFF; /* white */
+    --color-ring: #1B365D; /* blue-900 primary */
+
+    /* Brand Colors */
+    --color-primary: #1B365D; /* blue-900 deep stellar blue */
+    --color-primary-foreground: #FFFFFF; /* white */
+    --color-secondary: #2E5984; /* blue-700 lighter blue */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    --color-accent: #00D4FF; /* cyan-400 bright cyan */
+    --color-accent-foreground: #1A202C; /* gray-900 */
+
+    /* Status Colors */
+    --color-success: #38A169; /* green-600 forest green */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #D69E2E; /* yellow-600 amber */
+    --color-warning-foreground: #1A202C; /* gray-900 */
+    --color-error: #E53E3E; /* red-600 clear red */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #E53E3E; /* red-600 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+
+    /* Animation Variables */
+    --animation-duration-fast: 150ms;
+    --animation-duration-normal: 300ms;
+    --animation-duration-slow: 500ms;
+    --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Dark Mode Colors */
+    --color-background: #0F0F23; /* Deep space blue */
+    --color-foreground: #E2E8F0; /* Light gray */
+    --color-card: #1A1B3A; /* Dark blue card */
+    --color-card-foreground: #E2E8F0; /* Light gray */
+    --color-popover: #1A1B3A; /* Dark blue */
+    --color-popover-foreground: #E2E8F0; /* Light gray */
+    --color-muted: #1E1E3F; /* Darker blue */
+    --color-muted-foreground: #94A3B8; /* Medium gray */
+    --color-border: rgba(255, 255, 255, 0.1); /* white-10 */
+    --color-input: #1A1B3A; /* Dark blue */
+    --color-ring: #00D4FF; /* bright cyan */
+
+    /* Brand Colors - Dark Mode */
+    --color-primary: #00D4FF; /* bright cyan for dark mode */
+    --color-primary-foreground: #0F0F23; /* dark background */
+    --color-secondary: #1B365D; /* deep blue */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    --color-accent: #7C3AED; /* purple accent for dark */
+    --color-accent-foreground: #FFFFFF; /* white */
+
+    /* Status Colors - Dark Mode */
+    --color-success: #10B981; /* emerald-500 */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #F59E0B; /* amber-500 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    --color-error: #EF4444; /* red-500 */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #EF4444; /* red-500 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Typography Base */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  body, p, span, div {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+  }
+
+  /* Animation Base */
+  * {
+    transition-timing-function: var(--animation-timing);
+  }
+}
+
+@layer components {
+  /* 3D Animation Classes */
+  .transform-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card-3d:hover {
+    transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+  }
+
+  .float-3d {
+    animation: float-3d 6s ease-in-out infinite;
+  }
+
+  @keyframes float-3d {
+    0%, 100% {
+      transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+    }
+    33% {
+      transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+    }
+    66% {
+      transform: translateY(-10px) rotateX(-5deg) rotateY(-5deg);
+    }
+  }
+
+  .rotate-3d {
+    animation: rotate-3d 20s linear infinite;
+  }
+
+  @keyframes rotate-3d {
+    0% {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+      transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+  }
+
+  .depth-glow {
+    box-shadow: 
+      0 0 20px rgba(0, 212, 255, 0.3),
+      0 0 40px rgba(0, 212, 255, 0.2),
+      0 0 80px rgba(0, 212, 255, 0.1);
+  }
+
+  .dark .depth-glow {
+    box-shadow: 
+      0 0 20px rgba(124, 58, 237, 0.4),
+      0 0 40px rgba(124, 58, 237, 0.3),
+      0 0 80px rgba(124, 58, 237, 0.2);
+  }
+
+  /* Micro-interactions */
+  .hover-lift {
+    @apply transition-transform duration-150 ease-out hover:translate-y-[-1px];
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-150 ease-out hover:scale-105;
+  }
+
+  /* Status indicators */
+  .pulse-gentle {
+    animation: pulse-gentle 2s infinite;
+  }
+
+  @keyframes pulse-gentle {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  /* Loading states */
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+  }
+
+  .dark .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.4), transparent);
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Shadows */
+  .shadow-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .shadow-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .shadow-modal {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .shadow-modal {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Borders */
+  .border-subtle {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .border-subtle {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Glass morphism */
+  .glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+  }
+
+  .dark .glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(26, 27, 58, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+  }
+}
